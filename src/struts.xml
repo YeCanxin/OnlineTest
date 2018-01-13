@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<!-- 设置请求 参数的编码格式 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	<!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开  -->  
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	
+	<!-- struts.devMode代表开发者模式（develop modal），开启后如果改变了其中的一些代码，可以不用重新启动 。默认值为false(生产环境下使用),开发阶段最好打开-->
+	<constant name="struts.devMode" value="true"></constant>
+	
+	
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="login" class="user.Login">
+			<result name="success">login_success.jsp</result>
+			<result name="fail">login_fail.jsp</result>
+		</action>
+		<action name="register" class="user.Register">
+			<result name="success">register_success.jsp</result>
+			<result name="fail">register_fail.jsp</result>
+		</action>
+	</package>
+</struts>
