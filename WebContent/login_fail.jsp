@@ -8,7 +8,7 @@
 <title>login fail</title>
 </head>
 <body>
-	<s:property value="username"/>
+	<%=session.getAttribute("username") %>
 	<p>登录失败</p>
 </body>
 </html>
