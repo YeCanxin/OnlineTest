@@ -10,6 +10,5 @@
 <body>
 	<p>登录成功</p>
 	<%=session.getAttribute("username") %>
-	<%=session.getAttribute("password") %>
 </body>
 </html>

@@ -9,8 +9,8 @@
 </head>
 <body>
 	<s:form action="login" method="post" namespace="/">
-		<s:textfield name="username" label="用户名"></s:textfield>
-		<s:password name="password" label="密码"></s:password>
+		<s:textfield name="user.username" label="用户名"></s:textfield>
+		<s:password name="user.password" label="密码"></s:password>
 		<s:submit value="login"></s:submit>
 	</s:form>
 </body>

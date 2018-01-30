@@ -1,1 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 指定连接数据库所用的驱动 -->  
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+     
+	    <!-- 指定连接数据库的url，hibernate连接的数据库名 -->  
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost/struts2_learn_database"></property>
+     
+	    <!-- 指定连接数据库的用户名 -->  
+	    <property name="user" value="root"></property>
+	    
+	    <!-- 指定连接数据库的密码 -->  
+	    <property name="password" value=""></property>
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="mappingResources">
+            <list>
+                <value>model/User.hbm.xml</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <!-- MySQL -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+
+                <prop key="hibernate.current_session_context_class">
+                    org.springframework.orm.hibernate4.SpringSessionContext
+                </prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+	<!-- 事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>  
+    
+    <!-- 开启注解事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 注入 -->
+	<bean id = "userDao" class = "dao.UserDao">
+		<property name = "sessionFactory" ref = "sessionFactory"/>
+	</bean>
+	
+	<bean id = "user" class = "model.User"></bean>
+	
+	<bean id = "userService" class = "service.UserService">
+		<property name = "userDao" ref = "userDao"/>
+	</bean>
+	
+	<bean id = "userAction" class = "action.UserAction">
+		<property name = "user" ref = "user"/>
+		<property name = "userService" ref = "userService"/>
+	</bean>
+</beans>

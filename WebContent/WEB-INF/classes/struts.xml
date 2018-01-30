@@ -13,7 +13,6 @@
 	<!-- struts.devMode代表开发者模式（develop modal），开启后如果改变了其中的一些代码，可以不用重新启动 。默认值为false(生产环境下使用),开发阶段最好打开-->
 	<constant name="struts.devsMode" value="true"></constant>
 	
-	
 	<package name="action" namespace="/" extends="struts-default">
 		<action name="login" class="action.UserAction" method="login">
 			<result name="success" type="redirect">login_success.jsp</result>

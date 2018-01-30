@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
-import encryption.Ecryption;
+import encryption.Encryption;
 
 public class DataBaseCon {
 	//声明Connection对象
@@ -45,7 +45,10 @@ public class DataBaseCon {
 	
 	public boolean login(String username,String password) {
 //		String encryptionPassword = Ecryption.encryption(password);
-		String sql = "select * from users where username='" + username + "' and password='" + Ecryption.encryption(password) + "'";
+		String sql = "select * from users where username='" + username + "' and password='" + password + "'";
+
+		System.out.println(username + "," +password);
+		
 		connection = getConnection();
 		try {
 			//创建一个Statement对象，可以用来执行sql语句
@@ -67,7 +70,7 @@ public class DataBaseCon {
 	public boolean register(String username,String password) {
 		System.out.println("进入数据库注册环节！");
 		
-		String sql = "insert into users values('" + username + "','" + Ecryption.encryption(password) + "')";
+		String sql = "insert into users values('" + username + "','" + Encryption.encryption(password) + "')";
 		
 		System.out.println("sql语句是：" + sql);
 		
