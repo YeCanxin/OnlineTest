@@ -79,7 +79,7 @@
                     </s:form>
                     <div class="register-link">
                         <p style="font-size: 10px; float: left;">没有账号？<a href="">注册一个</a></p>
-                        <p style="font-size: 10px;"><a href="">忘记密码</a></p>
+                        <p style="font-size: 10px; float: right;"><a href="">忘记密码</a></p>
                     </div>
                 </div>
             </div>
